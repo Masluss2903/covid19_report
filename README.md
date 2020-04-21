@@ -7,3 +7,6 @@ We used Python for this project.
 #### Installation
 
 pip install -r /path/to/requirements.txt
+
+#### Application Architecture
+![Application Architecture](images/architecture.jpg)
