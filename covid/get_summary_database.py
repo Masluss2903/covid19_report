@@ -31,6 +31,12 @@ def get_data_by_country(covid_summary, search):
 
     return answer
 
+def get_connection_database():
+    dynamodb = boto3.resource("dynamodb")
+    tables = dynamodb.Table('summary')
+    covid_summary = tables.get_item(Key = {'Date' : 'latest'})
+    return covid_summary
+
 def respond(err, res=None):
     return {
         'statusCode': '400' if err else '200',
@@ -41,10 +47,7 @@ def respond(err, res=None):
     }
 
 def lambda_handler(event, context):
-    dynamodb = boto3.resource("dynamodb")
-    tables = dynamodb.Table('summary')
-    covid_summary = tables.get_item(Key = {'Date' : 'latest'})
-
+    covid_summary = get_connection_database()
     message_from_slack = parse_qs(event["body"])
     search = str(message_from_slack['text'][0])
     search = search.lower()
