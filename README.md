@@ -13,7 +13,7 @@ To install the requirements
 
 You need to write this command on the terminal to run the unit test.
 
-`py -m tests.unit_test`
+`python -m tests.unit_test`
 
 ### Application Architecture
 ![Application Architecture](images/architecture.jpg)
